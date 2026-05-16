@@ -1774,6 +1774,40 @@ function Analyze({ captures, onComplete }) {
 // PHASE 4: CUSTOMIZE
 // ────────────────────────────────────────────────────────────────
 
+function generateVibe(config: any): string {
+  const exprId = matchExpression(config) || 'serene';
+  const hairStyle = config?.hairStyle || 'short';
+  const faceShape = config?.faceShape || 'round';
+  const moodMap: Record<string, string> = {
+    serene:  'calm · quietly observant · brings the room down by half a notch',
+    cheerful:'sunny · easy to laugh · the friend who always knows a coffee spot',
+    sleepy:  'soft-spoken · perpetually cozy · runs on tea and small naps',
+    sparkle: 'curious · talks fast · saves screenshots of everything',
+    determined: 'focused · finishes what they start · politely competitive',
+    serious: 'thoughtful · listens before speaking · writes good DMs',
+  };
+  const styleMap: Record<string, string> = {
+    short:   'crisp look',
+    long:    'romantic energy',
+    pony:    'always-moving energy',
+    bun:     'busy-but-grounded energy',
+    curly:   'expressive energy',
+    bald:    'low-fuss energy',
+    cap:     'casual cool',
+  };
+  const shapeMap: Record<string, string> = {
+    round:   'soft features',
+    oval:    'classic features',
+    square:  'sharp features',
+    heart:   'gentle features',
+    long:    'elegant features',
+  };
+  const mood = moodMap[exprId] || moodMap.serene;
+  const style = styleMap[hairStyle] || 'unique energy';
+  const shape = shapeMap[faceShape] || 'distinct features';
+  return `${shape} · ${style} · ${mood}`;
+}
+
 function Customize({ config, onChange, onEnter }) {
   const [tab, setTab] = useState('face');
 
